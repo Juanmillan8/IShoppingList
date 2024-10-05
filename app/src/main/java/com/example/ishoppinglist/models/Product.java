@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
+    //Atributos privados de la clase Product
     private int id;
     private String name;
     private String informativeNote;
     private Boolean needToBuy;
 
+    //Constructor con parámetros
     public Product(int id, String name, String informativeNote, Boolean needToBuy) {
         this.id = id;
         this.name = name;
@@ -16,9 +18,11 @@ public class Product implements Serializable {
         this.needToBuy = needToBuy;
     }
 
+    // Constructor vacío
     public Product() {
     }
 
+    // Métodos "getter" y "setter" para obtener y modificar los atributos del producto
     public int getId() {
         return id;
     }

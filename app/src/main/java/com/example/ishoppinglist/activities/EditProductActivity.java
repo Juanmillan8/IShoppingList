@@ -21,11 +21,11 @@ import com.example.ishoppinglist.models.Product;
 
 public class EditProductActivity extends AppCompatActivity {
 
+    //Declaración de variables necesarias para el funcionamiento de la activity
     private EditText etName, etInformativeNote;
     private Bundle getProduct;
     private Product productEdit;
-    private ImageButton btnBack;
-    private Button btnEdit;
+    private Button btnEdit, btnCancel;
     private TextView tvMessages;
     private Boolean repeatedData;
 
@@ -38,28 +38,44 @@ public class EditProductActivity extends AppCompatActivity {
         //Inicializamos los componentes de la interfaz y otros objetos necesarios
         initializeComponents();
 
-        //Si el usuario pulsa el boton btnBack se le redirigira a la anterior activity
-        btnBack.setOnClickListener(v -> {
-
+        //Si el usuario pulsa el botón btnCancel se ejecutará el método finish(), el método finish cierra la actividad actual
+        //y regresa a la anterior
+        btnCancel.setOnClickListener(v -> {
             finish();
-
         });
 
+        //Si el usuario pulsa el botón btnEdit, primero se pasará el booleano repeatedData a false, este booleano sirve para saber si a la
+        //hora de intentar editar un producto contiene datos repetidos, si por ejemplo intento editar un producto y contiene datos repetidos
+        //se pasaria el booleano repeatedData a true y no me dejaria editar el producto, y si posteriormente vuelvo a pulsar el botón btnEdit
+        //sin antes pasar el booleano repeatedData a false nunca me dejaría editar el producto, ya que el booleano repeatedData se quedaría en true
         btnEdit.setOnClickListener(v -> {
-            repeatedData =false;
+            repeatedData=false;
+
+            //Se inicializa el método verifications(), este método realiza algunas verificaciones antes de llevar a cabo la edición del
+            //producto, por ejemplo, comprueba que los editText no estén vacíos y que los datos no estén repetidos, si los datos son
+            //correctos se llevará a cabo la edición del producto con los nuevos datos que el usuario haya ingresado
             verifications();
         });
     }
 
+    /**
+     * Este método edita el producto con los datos que el usuario haya insertado en los EditText y realiza las verifiaciones
+     * necesarias para que no ocurra ningun error
+     */
     private void verifications() {
 
-        //Verifica que los editText no esten vacios
+        //Verifica que los editText no estén vacíos
         if (etName.getText().length() == 0 | etInformativeNote.getText().length() == 0) {
+            //Si algún campo está vacío, muestra un mensaje de error en rojo
             tvMessages.setText("Necesitas rellenar todos los campos");
             tvMessages.setTextColor(Color.RED);
         }else{
 
+            //Recorremos la lista de productos
             for (Product product : ListProducts.productArrayList) {
+                //Si el producto que estamos recorriendo tiene el mismo nombre o la misma nota informativa que el producto que estamos
+                //editando pero no tiene la misma id (osea, tiene datos repetidos pero no es este mismo producto) pasaremos el booleano
+                //repeatedData a true, mostraremos un mensaje de error en rojo y nos salimos del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString()) && product.getId()!=productEdit.getId()){
                     repeatedData = true;
                     tvMessages.setText("Error, ya hay un producto con el nombre " + etName.getText());
@@ -73,13 +89,21 @@ public class EditProductActivity extends AppCompatActivity {
                 }
             }
 
+            // Si no hay datos repetidos, se actualiza el producto con los nuevos datos que el usuario ha introducido y
+            //volvemos al MainActivity
             if (!repeatedData) {
+                //Se asignan los nuevos valores al producto
                 productEdit.setName(etName.getText().toString());
                 productEdit.setInformativeNote(etInformativeNote.getText().toString());
+                //Se borra cualquier mensaje de error anterior
                 tvMessages.setText("");
+                //Llamamos al método editProduct el cual sirve para editar el producto y le pasamos por parametro el producto con
+                //los datos actualizados
                 ListProducts.editProduct(productEdit);
-                Toast.makeText(this, "Producto editado correctamente", Toast.LENGTH_LONG).show();
 
+                //Por último mostramos un mensaje por pantalla informando de que el producto se ha editado correctamente y posteriormente
+                //volvemos a la MainActivity
+                Toast.makeText(this, "Producto editado correctamente", Toast.LENGTH_LONG).show();
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
                 startActivity(mainActivityIntent);
             }
@@ -88,11 +112,11 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     /**
-     * Este metodo se encarga de inicializar todos los componentes de la interfaz de usuario y otros
+     * Este método se encarga de inicializar todos los componentes de la interfaz de usuario y otros
      * objetos necesarios para el funcionamiento de la actividad
      */
     private void initializeComponents(){
-        btnBack = findViewById(R.id.btnBack);
+        btnCancel = findViewById(R.id.btnCancel);
         btnEdit = findViewById(R.id.btnEdit);
         getProduct = getIntent().getExtras();
         productEdit = (Product) getProduct.getSerializable("product");

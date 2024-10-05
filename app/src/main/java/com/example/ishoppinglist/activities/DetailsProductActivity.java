@@ -19,6 +19,7 @@ import com.example.ishoppinglist.models.Product;
 
 public class DetailsProductActivity extends AppCompatActivity {
 
+    //Declaración de variables necesarias para el funcionamiento de la activity
     private ImageButton btnBack;
     private Bundle getProduct;
     private Product product;
@@ -33,23 +34,26 @@ public class DetailsProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_product);
 
-
+        //Inicializamos los componentes de la interfaz y otros objetos necesarios
         initializeComponents();
 
-        //Si el usuario pulsa el boton btnBack se le redirigira a la anterior activity
+        //Si el usuario pulsa el botón btnBack se le redirigirá a la anterior activity
         btnBack.setOnClickListener(v -> {
-
             Intent mainActivityIntent = new Intent(this, MainActivity.class);
             startActivity(mainActivityIntent);
-
         });
 
+        //Si el usuario pulsa el botón btnEditProduct, se inicializará la activity llamada EditProductActivity, en dicha actividad podremos
+        //llevar a cabo la edicion del producto que estamos actualmente visualizando
         btnEditProduct.setOnClickListener(v -> {
 
             Intent editProductIntent = new Intent(this, EditProductActivity.class);
 
+            //Se pasa el producto que estamos visualizando a la EditProductActivity para que al iniciar dicha actividad podamos obtener
+            //los datos del producto y modificarlos
             sendProduct.putSerializable("product", product);
             editProductIntent.putExtras(sendProduct);
+
 
             startActivity(editProductIntent);
 
@@ -70,17 +74,12 @@ public class DetailsProductActivity extends AppCompatActivity {
         btnEditProduct = findViewById(R.id.btnEditProduct);
         sendProduct = new Bundle();
 
+        //Obtenemos el producto que fue pasado de la anterior activity a esta
         getProduct = getIntent().getExtras();
-        product = (Product) getProduct.getSerializable("Product");
+        product = (Product) getProduct.getSerializable("product");
 
         tvName.setText(product.getName());
         tvInformativeNote.setText(product.getInformativeNote());
-
-        if(product.getNeedToBuy()){
-            tvPurchaseStatus.setText("Se necesita comprar");
-        }else{
-            tvPurchaseStatus.setText("No se necesita comprar");
-        }
-
+        tvPurchaseStatus.setText("Pendiente de compra");
     }
 }

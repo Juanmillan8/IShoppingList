@@ -16,6 +16,7 @@ import com.example.ishoppinglist.models.Product;
 
 public class AddProductToSystemActivity extends AppCompatActivity {
 
+    //Declaración de componentes y variables necesarias para el funcionamiento de la activity
     private Button btnCancel, btnInsert;
     private EditText etName, etInformativeNote;
     private TextView tvMessages;
@@ -27,24 +28,36 @@ public class AddProductToSystemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_to_system);
 
-
+        //Inicializamos los componentes de la interfaz y otros objetos necesarios
         initializeComponents();
 
+        //Si el usuario pulsa el botón btnCancel se le redirigirá a la MainActivity
         btnCancel.setOnClickListener(v -> {
-
             Intent mainActivityIntent = new Intent(this, MainActivity.class);
             startActivity(mainActivityIntent);
-
         });
 
+        //Si el usuario pulsa el botón btnInsert, primero se pasará el booleano repeatedData a false, este booleano sirve para saber si a la
+        //hora de intentar insertar un nuevo producto contiene datos repetidos, si por ejemplo intento insertar un producto el cual contiene
+        //datos repetidos se pasaria el booleano repeatedData a true y no me dejaria insertar el producto, y si posteriormente vuelvo a pulsar
+        //el botón btnInsert sin antes pasar el booleano repeatedData a false nunca me dejaría insertar el producto, ya que el booleano repeatedData
+        //se quedaría en true
         btnInsert.setOnClickListener(v -> {
 
             repeatedData =false;
+
+            //Se inicializa el método verifications(), este método realiza algunas verificaciones antes de llevar a cabo la inserción del
+            //producto, por ejemplo, comprueba que los editText no estén vacíos y que los datos no estén repetidos, si los datos son
+            //correctos se llevará a cabo la inserción del producto con los datos que el usuario haya ingresado
             verifications();
 
         });
     }
 
+    /**
+     * Este método inserta un nuevo producto con los datos que el usuario haya ingresado en los EditText y realiza las verifiaciones
+     * necesarias para que no ocurra ningun error
+     */
     private void verifications() {
 
         //Verifica que los editText no esten vacios
@@ -53,7 +66,11 @@ public class AddProductToSystemActivity extends AppCompatActivity {
             tvMessages.setTextColor(Color.RED);
         }else{
 
+            //Recorremos la lista de productos
             for (Product product : ListProducts.productArrayList) {
+                //Si el producto que estamos recorriendo tiene el mismo nombre o la misma nota informativa que el producto que estamos
+                //intentando insertar pasaremos el booleano repeatedData a true, mostraremos un mensaje de error en rojo y nos salimos
+                //del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString())){
                     repeatedData = true;
                     tvMessages.setText("Error, ya hay un producto con el nombre " + etName.getText());
@@ -67,19 +84,30 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 }
             }
 
+            // Si no hay datos repetidos, se inserta el producto con los datos que el usuario ha introducido y posteriormente
+            //volvemos al MainActivity
             if (!repeatedData) {
+                //Se asignan los datos al producto
                 productInsert.setName(etName.getText().toString());
                 productInsert.setInformativeNote(etInformativeNote.getText().toString());
+                //Se borra cualquier mensaje de error anterior
                 tvMessages.setText("");
+                //Llamamos al método insertProducts el cual sirve para insertar el producto que le pasemos por parametro
                 ListProducts.insertProducts(productInsert);
-                Toast.makeText(this, "Producto insertado correctamente", Toast.LENGTH_LONG).show();
 
+                //Por último mostramos un mensaje por pantalla informando de que el producto se ha insertado correctamente y posteriormente
+                //volvemos a la MainActivity
+                Toast.makeText(this, "Producto insertado correctamente", Toast.LENGTH_LONG).show();
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
                 startActivity(mainActivityIntent);
             }
         }
     }
 
+    /**
+     * Este método se encarga de inicializar todos los componentes de la interfaz de usuario y otros
+     * objetos necesarios para el funcionamiento de la actividad
+     */
     private void initializeComponents(){
 
         btnCancel = findViewById(R.id.btnCancel);

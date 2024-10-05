@@ -10,32 +10,20 @@
     tools:context=".activities.AddProductsToPendingListActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         android:background="#3FA9FF"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:background="#3FA9FF"
-            card_view:srcCompat="@mipmap/back_button_icon" />
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:text="Añadir productos a la lista de pendientes"
             android:textAlignment="center"
@@ -43,16 +31,38 @@
             android:textSize="35sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
         <TextView
-            android:id="@+id/tvTitleDurationTime"
+            android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:text="No hay ningun producto disponible para pasar a la lista de pendientes, añade mas productos al sistema"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:textColor="@color/black"
-            android:text="Selecciona un producto" />
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvTitleSelectProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:layout_marginBottom="10dp"
+            android:text="Selecciona un producto"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone" />
 
 
         <Spinner
@@ -61,18 +71,41 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:spinnerMode="dialog" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="Añadir a la lista de pendientes"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="#3FA9FF"
-            />
-
+            android:layout_marginBottom="150dp"
+            android:spinnerMode="dialog"
+            android:visibility="gone" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Cancelar"
+            android:textColor="#3FA9FF"
+            app:strokeColor="#3FA9FF" />
+
+        <Button
+            android:id="@+id/btnInsert"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="#3FA9FF"
+            android:text="Insertar producto"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
