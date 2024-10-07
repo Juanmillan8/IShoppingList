@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Añadir productos a la lista de pendientes"
+            android:text="Add products to the pending list"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="35sp" />
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="No hay ningun producto disponible para pasar a la lista de pendientes, añade mas productos al sistema"
+            android:text="There are no products available to move to the pending list. Please add more products to the system"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:layout_marginBottom="10dp"
-            android:text="Selecciona un producto"
+            android:text="Select a product"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -93,7 +93,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="Cancelar"
+            android:text="Cancel"
             android:textColor="#3FA9FF"
             app:strokeColor="#3FA9FF" />
 
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:backgroundTint="#3FA9FF"
-            android:text="Insertar producto"
+            android:text="Insert product"
             android:visibility="gone" />
 
     </LinearLayout>

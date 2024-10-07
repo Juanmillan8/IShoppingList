@@ -62,7 +62,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
 
         //Verifica que los editText no esten vacios
         if (etName.getText().length() == 0 | etInformativeNote.getText().length() == 0) {
-            tvMessages.setText("Necesitas rellenar todos los campos");
+            tvMessages.setText("You need to fill in all the fields");
             tvMessages.setTextColor(Color.RED);
         }else{
 
@@ -73,12 +73,12 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 //del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString())){
                     repeatedData = true;
-                    tvMessages.setText("Error, ya hay un producto con el nombre " + etName.getText());
+                    tvMessages.setText("Error, a product with the name " + etName.getText() + " already exists");
                     tvMessages.setTextColor(Color.RED);
                     break;
                 }else if (product.getInformativeNote().toString().equalsIgnoreCase(etInformativeNote.getText().toString())){
                     repeatedData = true;
-                    tvMessages.setText("Error, ya hay un producto con la nota informativa " + etInformativeNote.getText());
+                    tvMessages.setText("Error, a product with the informative note " + etInformativeNote.getText() + " already exists");
                     tvMessages.setTextColor(Color.RED);
                     break;
                 }
@@ -97,7 +97,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
 
                 //Por último mostramos un mensaje por pantalla informando de que el producto se ha insertado correctamente y posteriormente
                 //volvemos a la MainActivity
-                Toast.makeText(this, "Producto insertado correctamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Product successfully inserted", Toast.LENGTH_LONG).show();
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
                 startActivity(mainActivityIntent);
             }

@@ -67,7 +67,7 @@ public class EditProductActivity extends AppCompatActivity {
         //Verifica que los editText no estén vacíos
         if (etName.getText().length() == 0 | etInformativeNote.getText().length() == 0) {
             //Si algún campo está vacío, muestra un mensaje de error en rojo
-            tvMessages.setText("Necesitas rellenar todos los campos");
+            tvMessages.setText("You need to fill in all the fields");
             tvMessages.setTextColor(Color.RED);
         }else{
 
@@ -78,12 +78,12 @@ public class EditProductActivity extends AppCompatActivity {
                 //repeatedData a true, mostraremos un mensaje de error en rojo y nos salimos del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString()) && product.getId()!=productEdit.getId()){
                     repeatedData = true;
-                    tvMessages.setText("Error, ya hay un producto con el nombre " + etName.getText());
+                    tvMessages.setText("Error, a product with the name " + etName.getText() + " already exists");
                     tvMessages.setTextColor(Color.RED);
                     break;
                 }else if (product.getInformativeNote().toString().equalsIgnoreCase(etInformativeNote.getText().toString()) && product.getId()!=productEdit.getId()){
                     repeatedData = true;
-                    tvMessages.setText("Error, ya hay un producto con la nota informativa " + etInformativeNote.getText());
+                    tvMessages.setText("Error, a product with the informative note " + etInformativeNote.getText() + " already exists");
                     tvMessages.setTextColor(Color.RED);
                     break;
                 }
@@ -103,7 +103,7 @@ public class EditProductActivity extends AppCompatActivity {
 
                 //Por último mostramos un mensaje por pantalla informando de que el producto se ha editado correctamente y posteriormente
                 //volvemos a la MainActivity
-                Toast.makeText(this, "Producto editado correctamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Product successfully edited", Toast.LENGTH_LONG).show();
                 Intent mainActivityIntent = new Intent(this, MainActivity.class);
                 startActivity(mainActivityIntent);
             }

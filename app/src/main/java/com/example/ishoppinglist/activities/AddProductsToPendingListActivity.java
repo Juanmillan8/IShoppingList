@@ -59,7 +59,7 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
 
         //Por último mostramos un mensaje por pantalla informando de que el producto ha pasado a estar como pendiente de compra correctamente
         //y posteriormente volvemos a la MainActivity
-        Toast.makeText(this, "Producto añadido correctamente a la lista de pendientes", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Product successfully added to the pending list", Toast.LENGTH_LONG).show();
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
         startActivity(mainActivityIntent);
 

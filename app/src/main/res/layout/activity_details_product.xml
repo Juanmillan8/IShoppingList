@@ -37,7 +37,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:text="Detalles del producto"
+            android:text="Product details"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="35sp" />
@@ -79,7 +79,7 @@
                 android:layout_marginRight="40dp"
                 android:textSize="17sp"
                 android:textAlignment="center"
-                android:text="Nombre"
+                android:text="Name"
                 android:textColor="@color/white" />
 
             <TextView
@@ -90,7 +90,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="40dp"
                 android:textAlignment="center"
-                android:text="Nombre"
+                android:text="Name"
                 android:textColor="@color/white" />
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="200dp"
                 android:textSize="17sp"
-                android:text="Nota informativa"
+                android:text="Informative note"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
@@ -114,7 +114,7 @@
                 android:layout_marginTop="150dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="200dp"
-                android:text="Nota informativa"
+                android:text="Informative note"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
@@ -122,11 +122,11 @@
                 android:id="@+id/tvTitlePurchaseStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="230dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="17sp"
-                android:text="Estado de la\ncompra"
+                android:text="Purchase status"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
@@ -134,11 +134,11 @@
                 android:id="@+id/tvPurchaseStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="255dp"
+                android:layout_marginLeft="250dp"
                 android:layout_marginTop="150dp"
-                android:layout_marginRight="45dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="20dp"
-                android:text="Estado de la compra"
+                android:text="Purchase status"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
@@ -155,7 +155,7 @@
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="200dp"
                 android:layout_marginBottom="20dp"
-                android:text="Editar producto"
+                android:text="Edit product"
                 style="?attr/materialButtonOutlinedStyle"
                 app:strokeColor="@color/white"
                 android:textColor="@color/white"

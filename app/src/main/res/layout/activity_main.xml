@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Lista de productos que necesitas comprar"
+                android:text="List of products you need to buy"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
@@ -51,12 +51,12 @@
 
     <Button
         android:id="@+id/btnAddProductsToPendingList"
-        android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="#3FA9FF"
-        android:text="Añadir productos a la lista de pendientes"
+        android:text="Add products to the pending list"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,12 +67,12 @@
 
     <Button
         android:id="@+id/btnAddProductToSystem"
-        android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="#3FA9FF"
-        android:text="Añadir productos al sistema"
+        android:text="Add products to the system"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
