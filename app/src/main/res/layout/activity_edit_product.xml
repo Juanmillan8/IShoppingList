@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="729dp"
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
