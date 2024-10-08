@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +20,9 @@ public class AddProductToSystemActivity extends AppCompatActivity {
     //Declaración de componentes y variables necesarias para el funcionamiento de la activity
     private Button btnCancel, btnInsert;
     private EditText etName, etInformativeNote;
-    private TextView tvMessages;
     private Boolean repeatedData;
     private Product productInsert;
+    private Switch swtPendingPurchase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,8 @@ public class AddProductToSystemActivity extends AppCompatActivity {
 
         //Verifica que los editText no esten vacios
         if (etName.getText().length() == 0 | etInformativeNote.getText().length() == 0) {
-            tvMessages.setText("You need to fill in all the fields");
-            tvMessages.setTextColor(Color.RED);
+            Toast.makeText(this, "You need to fill in all the fields", Toast.LENGTH_LONG).show();
+
         }else{
 
             //Recorremos la lista de productos
@@ -73,13 +74,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 //del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString())){
                     repeatedData = true;
-                    tvMessages.setText("Error, a product with the name " + etName.getText() + " already exists");
-                    tvMessages.setTextColor(Color.RED);
-                    break;
-                }else if (product.getInformativeNote().toString().equalsIgnoreCase(etInformativeNote.getText().toString())){
-                    repeatedData = true;
-                    tvMessages.setText("Error, a product with the informative note " + etInformativeNote.getText() + " already exists");
-                    tvMessages.setTextColor(Color.RED);
+                    Toast.makeText(this, "Error, a product with the name " + etName.getText() + " already exists", Toast.LENGTH_LONG).show();
                     break;
                 }
             }
@@ -90,8 +85,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 //Se asignan los datos al producto
                 productInsert.setName(etName.getText().toString());
                 productInsert.setInformativeNote(etInformativeNote.getText().toString());
-                //Se borra cualquier mensaje de error anterior
-                tvMessages.setText("");
+                productInsert.setNeedToBuy(swtPendingPurchase.isChecked());
                 //Llamamos al método insertProducts el cual sirve para insertar el producto que le pasemos por parametro
                 ListProducts.insertProducts(productInsert);
 
@@ -114,7 +108,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
         btnInsert = findViewById(R.id.btnInsert);
         etName = findViewById(R.id.etName);
         etInformativeNote = findViewById(R.id.etInformativeNote);
-        tvMessages = findViewById(R.id.tvMessages);
+        swtPendingPurchase = findViewById(R.id.swtPendingPurchase);
         productInsert = new Product();
 
     }

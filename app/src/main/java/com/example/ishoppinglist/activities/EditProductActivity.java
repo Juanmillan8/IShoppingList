@@ -5,15 +5,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ishoppinglist.R;
 import com.example.ishoppinglist.listProducts.ListProducts;
@@ -26,8 +22,9 @@ public class EditProductActivity extends AppCompatActivity {
     private Bundle getProduct;
     private Product productEdit;
     private Button btnEdit, btnCancel;
-    private TextView tvMessages;
     private Boolean repeatedData;
+    private Switch swtPendingPurchase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +64,17 @@ public class EditProductActivity extends AppCompatActivity {
         //Verifica que los editText no estén vacíos
         if (etName.getText().length() == 0 | etInformativeNote.getText().length() == 0) {
             //Si algún campo está vacío, muestra un mensaje de error en rojo
-            tvMessages.setText("You need to fill in all the fields");
-            tvMessages.setTextColor(Color.RED);
+            Toast.makeText(this, "You need to fill in all the fields", Toast.LENGTH_LONG).show();
         }else{
 
             //Recorremos la lista de productos
             for (Product product : ListProducts.productArrayList) {
-                //Si el producto que estamos recorriendo tiene el mismo nombre o la misma nota informativa que el producto que estamos
-                //editando pero no tiene la misma id (osea, tiene datos repetidos pero no es este mismo producto) pasaremos el booleano
+                //Si el producto que estamos recorriendo tiene el mismo nombre que el producto que estamos
+                //editando pero no tiene la misma id (osea, tiene el mismo nombre pero no es este mismo producto) pasaremos el booleano
                 //repeatedData a true, mostraremos un mensaje de error en rojo y nos salimos del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString()) && product.getId()!=productEdit.getId()){
                     repeatedData = true;
-                    tvMessages.setText("Error, a product with the name " + etName.getText() + " already exists");
-                    tvMessages.setTextColor(Color.RED);
-                    break;
-                }else if (product.getInformativeNote().toString().equalsIgnoreCase(etInformativeNote.getText().toString()) && product.getId()!=productEdit.getId()){
-                    repeatedData = true;
-                    tvMessages.setText("Error, a product with the informative note " + etInformativeNote.getText() + " already exists");
-                    tvMessages.setTextColor(Color.RED);
+                    Toast.makeText(this, "Error, a product with the name " + etName.getText() + " already exists", Toast.LENGTH_LONG).show();
                     break;
                 }
             }
@@ -95,8 +85,7 @@ public class EditProductActivity extends AppCompatActivity {
                 //Se asignan los nuevos valores al producto
                 productEdit.setName(etName.getText().toString());
                 productEdit.setInformativeNote(etInformativeNote.getText().toString());
-                //Se borra cualquier mensaje de error anterior
-                tvMessages.setText("");
+                productEdit.setNeedToBuy(swtPendingPurchase.isChecked());
                 //Llamamos al método editProduct el cual sirve para editar el producto y le pasamos por parametro el producto con
                 //los datos actualizados
                 ListProducts.editProduct(productEdit);
@@ -117,16 +106,17 @@ public class EditProductActivity extends AppCompatActivity {
      */
     private void initializeComponents(){
         btnCancel = findViewById(R.id.btnCancel);
+        swtPendingPurchase = findViewById(R.id.swtPendingPurchase);
         btnEdit = findViewById(R.id.btnEdit);
         getProduct = getIntent().getExtras();
         productEdit = (Product) getProduct.getSerializable("product");
         etName = findViewById(R.id.etName);
         etInformativeNote = findViewById(R.id.etInformativeNote);
-        tvMessages = findViewById(R.id.tvMessages);
 
 
         etName.setText(productEdit.getName());
         etInformativeNote.setText(productEdit.getInformativeNote());
+        swtPendingPurchase.setChecked(productEdit.getNeedToBuy());
 
     }
 

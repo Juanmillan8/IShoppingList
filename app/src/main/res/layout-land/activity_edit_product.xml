@@ -88,15 +88,15 @@
                 android:hint="Informative note..."
                 android:inputType="text" />
 
-            <TextView
-                android:id="@+id/tvMessages"
-                android:layout_width="match_parent"
+            <Switch
+                android:id="@+id/swtPendingPurchase"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:textAlignment="center"
-                android:textSize="17sp" />
+                android:layout_weight="1"
+                android:text="Pending purchase"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
 
         </LinearLayout>
 

@@ -1,5 +1,7 @@
 package com.example.ishoppinglist.listProducts;
 
+import android.util.Log;
+
 import com.example.ishoppinglist.models.Product;
 import java.util.ArrayList;
 
@@ -61,10 +63,8 @@ public class ListProducts {
             }
         }
 
-        //Asignamos al nuevo producto un id que sea el siguiente al id más alto encontrado, establecemos por defecto que el producto no necesita
-        //ser comprado y por ultimo lo añadimos a la lista
+        //Asignamos al nuevo producto un id que sea el siguiente al id más alto encontrado y por ultimo lo añadimos a la lista
         p.setId(id+1);
-        p.setNeedToBuy(false);
         productArrayList.add(p);
 
 
