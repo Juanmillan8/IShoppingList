@@ -14,7 +14,7 @@ public class DataBase {
     public static void enterTestData(){
 
         //Por cada iteración del bucle creo un nuevo objeto Product, le asigno datos y lo añado a la lista de productos
-        for(int i=1;i<=5;i++){
+        for(int i=1;i<=20;i++){
             Product p = new Product();
 
             p.setId(i);
