@@ -94,15 +94,15 @@ public class ListProducts {
     /**
      * Método que devuelve una lista de productos que NO necesitan ser comprados
      */
-    public static ArrayList<Product> getProductsThatDontNeedToBuy(){
+    public static ArrayList<String> getProductsThatDontNeedToBuy(){
 
         //Creamos una nueva lista de objetos Product la cual posteriormente retornaré
-        ArrayList<Product> productsThatDontNeedToBuy = new ArrayList<Product>();
+        ArrayList<String> productsThatDontNeedToBuy = new ArrayList<String>();
 
         //Recorremos los productos de la lista almacenando a la lista creada anteriormente los productos que no necesitan ser comprados
         for (Product product : ListProducts.productArrayList) {
             if(!product.getNeedToBuy()){
-                productsThatDontNeedToBuy.add(product);
+                productsThatDontNeedToBuy.add(product.getName());
             }
         }
         //Por último retornamos la lista

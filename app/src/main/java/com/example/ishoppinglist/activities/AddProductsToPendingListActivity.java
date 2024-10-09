@@ -22,6 +22,7 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
     private Button btnCancel, btnInsert;
     private Product p;
     private TextView tvMessage, tvTitleSelectProduct;
+    private String productName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,16 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
      * a la MainActivity
      */
     private void insertProductToPendingList(){
-        //Obtenemos el producto seleccionado del Spinner y lo almacenamos en un objeto Product
-        p = (Product) spinnerProducts.getSelectedItem();
+
+        productName = spinnerProducts.getSelectedItem().toString();
+
+        for (Product product : ListProducts.productArrayList) {
+            if (product.getName().toString().equalsIgnoreCase(productName)){
+                p = product;
+                break;
+        }
+        }
+
         //Pasamos el atributo needToBuy a true indicando que ahora dicho producto esta como pendiente de compra
         p.setNeedToBuy(true);
         //Editamos el producto almacenando el cambio en el atributo needToBuy
@@ -80,7 +89,7 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
 
         //Creamos un adaptador para el Spinner el cual contiene los productos que no necesitan ser comprados (obtenemos dichos productos usando el metodo
         //getProductsThatDontNeedToBuy() de la clase ListProducts), posteriormente le asignamos dicho adaptador al Spinner
-        ArrayAdapter<Product> arrayAdapterProducts = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, ListProducts.getProductsThatDontNeedToBuy());
+        ArrayAdapter<String> arrayAdapterProducts = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, ListProducts.getProductsThatDontNeedToBuy());
         spinnerProducts.setAdapter(arrayAdapterProducts);
 
         //Si no hay productos disponibles para mostrar en el Spinner, mostraremos el botón btnCancel y el textView tvMessage el cual informa de que no hay
