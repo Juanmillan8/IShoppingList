@@ -1,18 +1,16 @@
 package com.example.ishoppinglist.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ishoppinglist.R;
-import com.example.ishoppinglist.listProducts.ListProducts;
+import com.example.ishoppinglist.DataBase.DataBase;
 import com.example.ishoppinglist.models.Product;
 
 public class AddProductToSystemActivity extends AppCompatActivity {
@@ -39,16 +37,16 @@ public class AddProductToSystemActivity extends AppCompatActivity {
         });
 
         //Si el usuario pulsa el botón btnInsert, primero se pasará el booleano repeatedData a false, este booleano sirve para saber si a la
-        //hora de intentar insertar un nuevo producto contiene datos repetidos, si por ejemplo intento insertar un producto el cual contiene
-        //datos repetidos se pasaria el booleano repeatedData a true y no me dejaria insertar el producto, y si posteriormente vuelvo a pulsar
-        //el botón btnInsert sin antes pasar el booleano repeatedData a false nunca me dejaría insertar el producto, ya que el booleano repeatedData
-        //se quedaría en true
+        //hora de intentar insertar un nuevo producto dicho producto está repetido, si por ejemplo intento editar un producto y está repetido
+        //se pasaria el booleano repeatedData a true y no me dejaria insertar el producto, y si posteriormente vuelvo a pulsar
+        //el botón btnInsert sin antes pasar el booleano repeatedData a false nunca me dejaría insertar el producto, ya que el booleano
+        //repeatedData se quedaría en true
         btnInsert.setOnClickListener(v -> {
 
             repeatedData =false;
 
             //Se inicializa el método verifications(), este método realiza algunas verificaciones antes de llevar a cabo la inserción del
-            //producto, por ejemplo, comprueba que los editText no estén vacíos y que los datos no estén repetidos, si los datos son
+            //producto, por ejemplo, comprueba que los editText no estén vacíos y que no hayan datos repetidos, si los datos son
             //correctos se llevará a cabo la inserción del producto con los datos que el usuario haya ingresado
             verifications();
 
@@ -68,9 +66,9 @@ public class AddProductToSystemActivity extends AppCompatActivity {
         }else{
 
             //Recorremos la lista de productos
-            for (Product product : ListProducts.productArrayList) {
-                //Si el producto que estamos recorriendo tiene el mismo nombre o la misma nota informativa que el producto que estamos
-                //intentando insertar pasaremos el booleano repeatedData a true, mostraremos un mensaje de error en rojo y nos salimos
+            for (Product product : DataBase.productArrayList) {
+                //Si el producto que estamos recorriendo tiene el mismo nombre que el producto que estamos intentando insertar
+                //pasaremos el booleano repeatedData a true, mostraremos un mensaje de error por pantalla y nos salimos
                 //del bucle usando break
                 if (product.getName().toString().equalsIgnoreCase(etName.getText().toString())){
                     repeatedData = true;
@@ -87,7 +85,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 productInsert.setInformativeNote(etInformativeNote.getText().toString());
                 productInsert.setNeedToBuy(swtPendingPurchase.isChecked());
                 //Llamamos al método insertProducts el cual sirve para insertar el producto que le pasemos por parametro
-                ListProducts.insertProducts(productInsert);
+                DataBase.insertProducts(productInsert);
 
                 //Por último mostramos un mensaje por pantalla informando de que el producto se ha insertado correctamente y posteriormente
                 //volvemos a la MainActivity

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ishoppinglist.R;
-import com.example.ishoppinglist.listProducts.ListProducts;
+import com.example.ishoppinglist.DataBase.DataBase;
 import com.example.ishoppinglist.models.Product;
 
 public class AddProductsToPendingListActivity extends AppCompatActivity {
@@ -52,19 +52,22 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
      */
     private void insertProductToPendingList(){
 
+        //Obtenemos el nombre del producto que hemos seleccionado en el spinner
         productName = spinnerProducts.getSelectedItem().toString();
 
-        for (Product product : ListProducts.productArrayList) {
+        //Recorremos la lista de productos, para cada producto, verificamos si el nombre coincide con el nombre del
+        //producto seleccionado en el spinner, si coincide almacenamos dicho producto en una variable y salimos del bucle
+        for (Product product : DataBase.productArrayList) {
             if (product.getName().toString().equalsIgnoreCase(productName)){
                 p = product;
                 break;
         }
         }
 
-        //Pasamos el atributo needToBuy a true indicando que ahora dicho producto esta como pendiente de compra
+        //Pasamos el atributo needToBuy del producto seleccionado a true indicando que ahora dicho producto esta como pendiente de compra
         p.setNeedToBuy(true);
         //Editamos el producto almacenando el cambio en el atributo needToBuy
-        ListProducts.editProduct(p);
+        DataBase.editProduct(p);
 
         //Por último mostramos un mensaje por pantalla informando de que el producto ha pasado a estar como pendiente de compra correctamente
         //y posteriormente volvemos a la MainActivity
@@ -89,7 +92,7 @@ public class AddProductsToPendingListActivity extends AppCompatActivity {
 
         //Creamos un adaptador para el Spinner el cual contiene los productos que no necesitan ser comprados (obtenemos dichos productos usando el metodo
         //getProductsThatDontNeedToBuy() de la clase ListProducts), posteriormente le asignamos dicho adaptador al Spinner
-        ArrayAdapter<String> arrayAdapterProducts = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, ListProducts.getProductsThatDontNeedToBuy());
+        ArrayAdapter<String> arrayAdapterProducts = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, DataBase.getProductsThatDontNeedToBuy());
         spinnerProducts.setAdapter(arrayAdapterProducts);
 
         //Si no hay productos disponibles para mostrar en el Spinner, mostraremos el botón btnCancel y el textView tvMessage el cual informa de que no hay

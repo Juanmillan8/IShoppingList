@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ishoppinglist.R;
 import com.example.ishoppinglist.adapters.ProductAdapter;
-import com.example.ishoppinglist.listProducts.ListProducts;
+import com.example.ishoppinglist.DataBase.DataBase;
 import com.example.ishoppinglist.models.Product;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Si la lista de productos esta vacia se inicializará el método enterTestData el cual sirve para llenar la lista con datos
         //de prueba
-        if(ListProducts.productArrayList.isEmpty()){
-            ListProducts.enterTestData();
+        if(DataBase.productArrayList.isEmpty()){
+            DataBase.enterTestData();
         }
 
         //Inicializamos los componentes de la interfaz y otros objetos necesarios
@@ -40,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //Se configura el adaptador con los productos que necesitan ser comprados, aquí en lugar de mandarle
         //directamente un arrayList al adapter usamos el método getProductsThatNeedToBuy() el cual nos devuelve un
         //arrayList con estos productos que necesitan ser comprados
-        adapter = new ProductAdapter(getApplicationContext(), ListProducts.getProductsThatNeedToBuy());
+        adapter = new ProductAdapter(getApplicationContext(), DataBase.getProductsThatNeedToBuy());
 
         //Le asignamos el adaptador al listView
         lvProducts.setAdapter(adapter);

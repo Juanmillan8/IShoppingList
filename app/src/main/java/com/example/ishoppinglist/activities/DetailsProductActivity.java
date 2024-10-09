@@ -80,6 +80,12 @@ public class DetailsProductActivity extends AppCompatActivity {
 
         tvName.setText(product.getName());
         tvInformativeNote.setText(product.getInformativeNote());
-        tvPurchaseStatus.setText("Pending purchase");
+
+        if(product.getNeedToBuy()){
+            tvPurchaseStatus.setText("Pending purchase");
+        }else{
+            tvPurchaseStatus.setText("Not pending purchase");
+        }
+
     }
 }

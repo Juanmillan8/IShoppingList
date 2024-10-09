@@ -1,11 +1,9 @@
-package com.example.ishoppinglist.listProducts;
-
-import android.util.Log;
+package com.example.ishoppinglist.DataBase;
 
 import com.example.ishoppinglist.models.Product;
 import java.util.ArrayList;
 
-public class ListProducts {
+public class DataBase {
 
     //Lista estática de productos que será accesible desde cualquier parte de la aplicación
     public static ArrayList<Product> productArrayList = new ArrayList<Product>();
@@ -55,7 +53,7 @@ public class ListProducts {
         int id=0;
 
         //Recorremos la lista de productos para buscar el producto con el id más alto en la lista
-        for (Product product : ListProducts.productArrayList) {
+        for (Product product : DataBase.productArrayList) {
             //Si la id del producto que estamos actualmente recorriendo es mas alta que la id almacenada sustituimos la id almacenada por la id del producto
             //actual, de esta forma, cuando salgamos del bucle, la variable id acabará obteniendo la id mas alta
             if(product.getId()>id){
@@ -80,7 +78,7 @@ public class ListProducts {
 
         //Recorremos la lista de productos y para cada producto que estemos recorriendo comprobamos si necesitan ser comprados o no, si necesitan ser comprados
         //los almacenamos en la lista creada anteriormente
-        for (Product product : ListProducts.productArrayList) {
+        for (Product product : DataBase.productArrayList) {
             if(product.getNeedToBuy()){
                 productsThatNeedToBuy.add(product);
             }
@@ -92,15 +90,16 @@ public class ListProducts {
     }
 
     /**
-     * Método que devuelve una lista de productos que NO necesitan ser comprados
+     * Método que devuelve una lista de los nombres de los productos que NO necesitan ser comprados
      */
     public static ArrayList<String> getProductsThatDontNeedToBuy(){
 
-        //Creamos una nueva lista de objetos Product la cual posteriormente retornaré
+        //Creamos una nueva lista de String la cual posteriormente retornaré
         ArrayList<String> productsThatDontNeedToBuy = new ArrayList<String>();
 
-        //Recorremos los productos de la lista almacenando a la lista creada anteriormente los productos que no necesitan ser comprados
-        for (Product product : ListProducts.productArrayList) {
+        //Recorremos los productos de la lista almacenando a la lista creada anteriormente los nombres de los productos
+        //que no necesitan ser comprados
+        for (Product product : DataBase.productArrayList) {
             if(!product.getNeedToBuy()){
                 productsThatDontNeedToBuy.add(product.getName());
             }
