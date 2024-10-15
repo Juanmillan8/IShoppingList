@@ -35,9 +35,10 @@ public class DataBase {
 
         //Recorremos la lista para encontrar el producto cuya id sea la misma que la id del producto pasado al método por parámetro
         for (int i = 0; i < productArrayList.size(); i++) {
-            //Si encontramos el producto que estábamos buscando, lo reemplazamos por el producto pasado al método por parámetro
+            //Si encontramos el producto que estábamos buscando, lo reemplazamos por el producto pasado al método por parámetro y salimos del bucle
             if(productArrayList.get(i).getId()==p.getId()){
                 productArrayList.set(i, p);
+                break;
             }
         }
     }
@@ -48,21 +49,14 @@ public class DataBase {
      * @param p El producto que se va a insertar en la lista
      */
     public static void insertProducts(Product p){
-        //Variable id inicializada a 0, la inicializo a 0 para que la id del primer producto (osea, la id más baja) sea siempre mayor al número almacenado en
-        //esta variable
-        int id=0;
 
-        //Recorremos la lista de productos para buscar el producto con el id más alto en la lista
-        for (Product product : DataBase.productArrayList) {
-            //Si la id del producto que estamos actualmente recorriendo es mas alta que la id almacenada sustituimos la id almacenada por la id del producto
-            //actual, de esta forma, cuando salgamos del bucle, la variable id acabará obteniendo la id mas alta
-            if(product.getId()>id){
-                id=product.getId();
-            }
-        }
+        //Le añadimos la id al nuevo producto, esta id será el tamaño actual de la lista + 1, da igual que lo hagamos de esta forma, ya que no se
+        //van a eliminar productos de la lista, por lo tanto no necesitamos saber cual id es mas alta independientemente del numero de
+        //productos almacenados, simplemente con saber el tamaño de la lista y sumarle 1 nos basta, con esto nos aseguramos de que cada producto
+        //tenga un id único
+        p.setId(productArrayList.size()+1);
 
-        //Asignamos al nuevo producto un id que sea el siguiente al id más alto encontrado y por ultimo lo añadimos a la lista
-        p.setId(id+1);
+        //Añadimos el nuevo producto a la lista
         productArrayList.add(p);
 
 
