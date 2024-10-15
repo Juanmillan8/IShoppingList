@@ -1,4 +1,4 @@
-package com.example.ishoppinglist.DataBase;
+package com.example.ishoppinglist.dataBase;
 
 import com.example.ishoppinglist.models.Product;
 import java.util.ArrayList;

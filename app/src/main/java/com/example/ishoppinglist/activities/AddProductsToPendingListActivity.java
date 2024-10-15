@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ishoppinglist.R;
-import com.example.ishoppinglist.DataBase.DataBase;
+import com.example.ishoppinglist.dataBase.DataBase;
 import com.example.ishoppinglist.models.Product;
 
 public class AddProductsToPendingListActivity extends AppCompatActivity {
