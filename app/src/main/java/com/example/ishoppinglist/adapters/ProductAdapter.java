@@ -1,6 +1,7 @@
 package com.example.ishoppinglist.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.example.ishoppinglist.R;
 import com.example.ishoppinglist.models.Product;
@@ -36,6 +38,14 @@ public class ProductAdapter extends ArrayAdapter<Product>{
         //Reutiliza una vista existente o crea una nueva si es necesario
         if(convertView==null){
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+        }
+
+        if(p.getContainsGluten() && p.getContainsLactose()){
+            convertView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorContainsGlutenAndLactose));
+        }else if (p.getContainsGluten()){
+        convertView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorContainsGluten));
+    }else if (p.getContainsLactose()) {
+            convertView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorContainsLactose));
         }
 
         //Accedemos al TextView que se usa para mostrar el nombre de cada producto y le

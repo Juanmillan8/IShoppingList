@@ -88,15 +88,37 @@
                 android:hint="Informative note..."
                 android:inputType="text" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <Switch
                 android:id="@+id/swtPendingPurchase"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Pending purchase"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
+                android:layout_marginRight="70dp"
+                android:layout_marginLeft="30dp"
                 />
+
+            <Switch
+                android:id="@+id/swtContainsGluten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contains gluten"
+                android:layout_marginRight="70dp"
+                />
+
+            <Switch
+                android:id="@+id/swtContainsLactose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contains lactose"
+                />
+
 
         </LinearLayout>
 

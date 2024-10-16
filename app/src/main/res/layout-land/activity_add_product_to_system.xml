@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AddProductToSystemActivity">
+    tools:context=".activities.AddProductToSystemActivity"
+    tools:ignore="MissingClass">
 
 
     <LinearLayout
@@ -89,16 +90,6 @@
 
         </LinearLayout>
 
-        <Switch
-            android:id="@+id/swtPendingPurchase"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pending purchase"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            />
-
     </LinearLayout>
 
     <Button
@@ -126,6 +117,45 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="10dp"
         />
+
+    <LinearLayout
+        android:layout_width="729dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="253dp">
+
+        <Switch
+            android:id="@+id/swtPendingPurchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pending purchase"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="30dp"
+            />
+
+
+
+
+        <Switch
+            android:id="@+id/swtContainsGluten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contains gluten"
+            android:layout_marginRight="70dp"
+            />
+
+
+
+        <Switch
+            android:id="@+id/swtContainsLactose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contains lactose"
+            />
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

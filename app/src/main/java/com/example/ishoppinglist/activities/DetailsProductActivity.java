@@ -23,9 +23,7 @@ public class DetailsProductActivity extends AppCompatActivity {
     private ImageButton btnBack;
     private Bundle getProduct;
     private Product product;
-    private TextView tvName;
-    private TextView tvInformativeNote;
-    private TextView tvPurchaseStatus;
+    private TextView tvName, tvInformativeNote, tvPurchaseStatus, tvContainsLactose, tvContainsGluten;
     private Button btnEditProduct;
     private Bundle sendProduct;
 
@@ -69,6 +67,8 @@ public class DetailsProductActivity extends AppCompatActivity {
     private void initializeComponents(){
         btnBack = findViewById(R.id.btnBack);
         tvName = findViewById(R.id.tvName);
+        tvContainsGluten = findViewById(R.id.tvContainsGluten);
+        tvContainsLactose = findViewById(R.id.tvContainsLactose);
         tvInformativeNote = findViewById(R.id.tvInformativeNote);
         tvPurchaseStatus = findViewById(R.id.tvPurchaseStatus);
         btnEditProduct = findViewById(R.id.btnEditProduct);
@@ -85,6 +85,18 @@ public class DetailsProductActivity extends AppCompatActivity {
             tvPurchaseStatus.setText("Pending purchase");
         }else{
             tvPurchaseStatus.setText("Not pending purchase");
+        }
+
+        if(product.getContainsGluten()){
+            tvContainsGluten.setText("Contains gluten");
+        }else{
+            tvContainsGluten.setText("Does not contain gluten");
+        }
+
+        if(product.getContainsLactose()){
+            tvContainsLactose.setText("Contains lactose");
+        }else{
+            tvContainsLactose.setText("Does not contain lactose");
         }
 
     }

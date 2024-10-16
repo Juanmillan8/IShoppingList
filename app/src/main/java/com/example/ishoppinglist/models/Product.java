@@ -9,12 +9,16 @@ public class Product implements Serializable {
     private String name;
     private String informativeNote;
     private Boolean needToBuy;
+    private Boolean containsLactose;
+    private Boolean containsGluten;
 
     //Constructor con parámetros
-    public Product(int id, String name, String informativeNote, Boolean needToBuy) {
+    public Product(int id, String name, String informativeNote, Boolean needToBuy, Boolean containsGluten, Boolean containsLactose) {
         this.id = id;
         this.name = name;
         this.informativeNote = informativeNote;
+        this.containsGluten = containsGluten;
+        this.containsLactose = containsLactose;
         this.needToBuy = needToBuy;
     }
 
@@ -47,6 +51,22 @@ public class Product implements Serializable {
         this.informativeNote = informativeNote;
     }
 
+    public Boolean getContainsLactose() {
+        return containsLactose;
+    }
+
+    public void setContainsLactose(Boolean containsLactose) {
+        this.containsLactose = containsLactose;
+    }
+
+    public Boolean getContainsGluten() {
+        return containsGluten;
+    }
+
+    public void setContainsGluten(Boolean containsGluten) {
+        this.containsGluten = containsGluten;
+    }
+
     public Boolean getNeedToBuy() {
         return needToBuy;
     }
@@ -62,6 +82,8 @@ public class Product implements Serializable {
                 ", name='" + name + '\'' +
                 ", informativeNote='" + informativeNote + '\'' +
                 ", needToBuy=" + needToBuy +
+                ", containsLactose=" + containsLactose +
+                ", containsGluten=" + containsGluten +
                 '}';
     }
 }

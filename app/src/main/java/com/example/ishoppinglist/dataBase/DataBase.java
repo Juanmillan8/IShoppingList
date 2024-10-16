@@ -1,7 +1,10 @@
 package com.example.ishoppinglist.dataBase;
 
+import android.util.Log;
+
 import com.example.ishoppinglist.models.Product;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DataBase {
 
@@ -12,7 +15,7 @@ public class DataBase {
      * Método que sirve para insertar datos de prueba en la lista de productos
      */
     public static void enterTestData(){
-
+        Random random = new Random();
         //Por cada iteración del bucle creo un nuevo objeto Product, le asigno datos y lo añado a la lista de productos
         for(int i=1;i<=20;i++){
             Product p = new Product();
@@ -21,6 +24,10 @@ public class DataBase {
             p.setName("Product " + i);
             p.setInformativeNote("Note " + i);
             p.setNeedToBuy(true);
+            p.setContainsGluten(random.nextBoolean());
+            p.setContainsLactose(random.nextBoolean());
+
+
             productArrayList.add(p);
 
         }
@@ -82,6 +89,21 @@ public class DataBase {
         return productsThatNeedToBuy;
 
     }
+
+    public static ArrayList<Product> getProductsWithoutGluten(){
+
+        ArrayList<Product> productsThatContainsLactose = new ArrayList<Product>();
+
+        for (Product product : DataBase.productArrayList) {
+            if(!product.getContainsGluten() && product.getNeedToBuy()){
+                productsThatContainsLactose.add(product);
+            }
+        }
+        return productsThatContainsLactose;
+
+    }
+
+
 
     /**
      * Método que devuelve una lista de los nombres de los productos que NO necesitan ser comprados

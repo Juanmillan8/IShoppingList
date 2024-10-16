@@ -20,7 +20,7 @@ public class AddProductToSystemActivity extends AppCompatActivity {
     private EditText etName, etInformativeNote;
     private Boolean repeatedData;
     private Product productInsert;
-    private Switch swtPendingPurchase;
+    private Switch swtPendingPurchase, swtContainsGluten, swtContainsLactose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +84,8 @@ public class AddProductToSystemActivity extends AppCompatActivity {
                 productInsert.setName(etName.getText().toString());
                 productInsert.setInformativeNote(etInformativeNote.getText().toString());
                 productInsert.setNeedToBuy(swtPendingPurchase.isChecked());
+                productInsert.setContainsGluten(swtContainsGluten.isChecked());
+                productInsert.setContainsLactose(swtContainsLactose.isChecked());
                 //Llamamos al método insertProducts el cual sirve para insertar el producto que le pasemos por parametro
                 DataBase.insertProducts(productInsert);
 
@@ -106,6 +108,8 @@ public class AddProductToSystemActivity extends AppCompatActivity {
         btnInsert = findViewById(R.id.btnInsert);
         etName = findViewById(R.id.etName);
         etInformativeNote = findViewById(R.id.etInformativeNote);
+        swtContainsGluten = findViewById(R.id.swtContainsGluten);
+        swtContainsLactose = findViewById(R.id.swtContainsLactose);
         swtPendingPurchase = findViewById(R.id.swtPendingPurchase);
         productInsert = new Product();
 

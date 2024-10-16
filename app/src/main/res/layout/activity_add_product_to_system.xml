@@ -6,23 +6,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AddProductToSystemActivity">
+    tools:context=".activities.AddProductToSystemActivity"
+    tools:ignore="MissingClass">
 
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
             android:background="#3FA9FF"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -82,16 +84,6 @@
 
         </LinearLayout>
 
-        <Switch
-            android:id="@+id/swtPendingPurchase"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pending purchase"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            />
-
     </LinearLayout>
 
     <Button
@@ -119,6 +111,40 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="50dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp">
+
+        <Switch
+            android:id="@+id/swtPendingPurchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Pending purchase" />
+
+
+        <Switch
+            android:id="@+id/swtContainsGluten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Contains gluten" />
+
+
+        <Switch
+            android:id="@+id/swtContainsLactose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Contains lactose" />
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

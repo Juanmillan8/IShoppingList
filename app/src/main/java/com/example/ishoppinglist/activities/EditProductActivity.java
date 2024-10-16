@@ -21,7 +21,7 @@ public class EditProductActivity extends AppCompatActivity {
     private Product productEdit;
     private Button btnEdit, btnCancel;
     private Boolean repeatedData;
-    private Switch swtPendingPurchase;
+    private Switch swtPendingPurchase, swtContainsGluten, swtContainsLactose;
 
 
     @Override
@@ -84,6 +84,8 @@ public class EditProductActivity extends AppCompatActivity {
                 productEdit.setName(etName.getText().toString());
                 productEdit.setInformativeNote(etInformativeNote.getText().toString());
                 productEdit.setNeedToBuy(swtPendingPurchase.isChecked());
+                productEdit.setContainsLactose(swtContainsLactose.isChecked());
+                productEdit.setContainsGluten(swtContainsGluten.isChecked());
                 //Llamamos al método editProduct el cual sirve para editar el producto y le pasamos por parametro el producto con
                 //los datos actualizados
                 DataBase.editProduct(productEdit);
@@ -110,11 +112,15 @@ public class EditProductActivity extends AppCompatActivity {
         productEdit = (Product) getProduct.getSerializable("product");
         etName = findViewById(R.id.etName);
         etInformativeNote = findViewById(R.id.etInformativeNote);
+        swtContainsGluten = findViewById(R.id.swtContainsGluten);
+        swtContainsLactose = findViewById(R.id.swtContainsLactose);
 
 
         etName.setText(productEdit.getName());
         etInformativeNote.setText(productEdit.getInformativeNote());
         swtPendingPurchase.setChecked(productEdit.getNeedToBuy());
+        swtContainsGluten.setChecked(productEdit.getContainsGluten());
+        swtContainsLactose.setChecked(productEdit.getContainsLactose());
 
     }
 
