@@ -103,6 +103,19 @@ public class DataBase {
 
     }
 
+    public static ArrayList<Product> getProductsWithoutLactose(){
+
+        ArrayList<Product> productsThatContainsLactose = new ArrayList<Product>();
+
+        for (Product product : DataBase.productArrayList) {
+            if(!product.getContainsLactose() && product.getNeedToBuy()){
+                productsThatContainsLactose.add(product);
+            }
+        }
+        return productsThatContainsLactose;
+
+    }
+
 
 
     /**

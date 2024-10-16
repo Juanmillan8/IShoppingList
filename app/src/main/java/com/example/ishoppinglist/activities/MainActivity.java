@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 }else if (selected.equalsIgnoreCase("All")){
                     adapter = new ProductAdapter(getApplicationContext(), DataBase.getProductsThatNeedToBuy());
                     lvProducts.setAdapter(adapter);
+                }else{
+                    adapter = new ProductAdapter(getApplicationContext(), DataBase.getProductsWithoutLactose());
+                    lvProducts.setAdapter(adapter);
                 }
 
             }
